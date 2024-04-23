@@ -5,7 +5,7 @@ import cookieParser from "cookie-parser";
 
 //files
 import connectDB from "./config/db.js";
-import exp from "constants";
+import userRoutes from "./routes/User.route.js";
 
 //configuration
 dotenv.config();
