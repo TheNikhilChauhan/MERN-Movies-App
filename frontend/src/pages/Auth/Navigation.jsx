@@ -123,7 +123,7 @@ const Navigation = () => {
           )}
 
           {!userInfo && (
-            <ul>
+            <ul className="flex">
               <li>
                 <Link
                   to="/login"
@@ -137,7 +137,7 @@ const Navigation = () => {
               <li>
                 <Link
                   to="/register"
-                  className="flex items-center mt-5 transition-transform transform hover:translate-x-2 mb-[1rem]"
+                  className="flex items-center mt-5 transition-transform transform hover:translate-x-2 ml-[1rem]"
                 >
                   <AiOutlineUserAdd size={26} />
                   <span className="hidden nav-item-name">REGISTER</span>
