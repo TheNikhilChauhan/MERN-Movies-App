@@ -11,7 +11,7 @@ const Profile = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const userInfo = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.auth);
 
   const [updateProfile, { isLoading: loadingUpdateProfile }] =
     useProfileMutation();
@@ -46,7 +46,7 @@ const Profile = () => {
 
   return (
     <div>
-      <div className="container mx-auto p-4 mt-[10rem]">
+      <div className="container mx-auto p-4 mt-[4rem]">
         <div className="flex justify-center align-middle md:flex md:space-x-4">
           <div className="md:w-1/3">
             <h2 className="text-2xl font-semibold mb-4 ">Update Profile</h2>
@@ -66,9 +66,9 @@ const Profile = () => {
                 <label className="block text-white mb-2">Email</label>
                 <input
                   type="email"
-                  value={email}
                   placeholder="Enter email"
                   className="form-input p-4 rounded-sm w-full"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
