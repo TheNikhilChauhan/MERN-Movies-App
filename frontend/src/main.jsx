@@ -5,13 +5,15 @@ import store from "./redux/store.js";
 import { Provider } from "react-redux";
 import { Route, RouterProvider, createRoutesFromElements } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
-import Home from "./pages/Home.jsx";
-import Register from "./pages/Auth/Register.jsx";
-import Login from "./pages/Auth/Login.jsx";
 
 // Auth
 
 // Restricted
+import Register from "./pages/Auth/Register.jsx";
+import Login from "./pages/Auth/Login.jsx";
+import PrivateRoutes from "./pages/Auth/PrivateRoutes.jsx";
+import Home from "./pages/Home.jsx";
+import Profile from "./pages/User/Profile.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +21,10 @@ const router = createBrowserRouter(
       <Route index={true} path="/" element={<Home />} />
       <Route index={true} path="/login" element={<Login />} />
       <Route index={true} path="/register" element={<Register />} />
+
+      <Route path="" element={<PrivateRoutes />}>
+        <Route path="/profile" element={<Profile />} />
+      </Route>
     </Route>
   )
 );

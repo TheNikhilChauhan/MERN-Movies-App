@@ -125,7 +125,7 @@ const Register = () => {
             {isLoading ? "Registering..." : "Register"}
           </button>
 
-          {isLoading && Loader}
+          {isLoading && <Loader />}
         </form>
 
         <div className="mt-4">
