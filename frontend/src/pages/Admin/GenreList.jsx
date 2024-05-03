@@ -101,7 +101,7 @@ const GenreList = () => {
         />
         <br />
 
-        <div>
+        <div className="flex flex-wrap">
           {genre?.map((genre) => (
             <div key={genre._id}>
               <button
