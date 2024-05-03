@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 //files
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/User.route.js";
+import genreRoutes from "./routes/Genre.route.js";
 
 //configuration
 dotenv.config();

@@ -1,5 +1,5 @@
-import Genre from "../models/Genre.model";
-import asyncHandler from "../middlewares/asyncHandler";
+import Genre from "../models/Genre.model.js";
+import asyncHandler from "../middlewares/asyncHandler.js";
 
 const createGenre = asyncHandler(async (req, res) => {
   try {
