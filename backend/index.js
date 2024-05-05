@@ -7,6 +7,8 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/User.route.js";
 import genreRoutes from "./routes/Genre.route.js";
+import movieRoutes from "./routes/Movie.route.js";
+import uploadRoutes from "./routes/Upload.route.js";
 
 //configuration
 dotenv.config();
@@ -26,5 +28,10 @@ const PORT = process.env.PORT || 3000;
 
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/genre", genreRoutes);
+app.use("/api/v1/movies", movieRoutes);
+app.use("/api/v1/upload", uploadRoutes);
+
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
 
 app.listen(PORT, () => console.log(`Server is running on Port ${PORT}`));
