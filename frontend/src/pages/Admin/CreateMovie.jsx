@@ -13,7 +13,7 @@ const CreateMovie = () => {
   const [movieData, setMovieData] = useState({
     name: "",
     year: "",
-    details: "",
+    detail: "",
     cast: [],
     rating: 0,
     image: null,
@@ -73,7 +73,7 @@ const CreateMovie = () => {
         !movieData.name ||
         !movieData.year ||
         !movieData.cast ||
-        !movieData.details ||
+        !movieData.detail ||
         !selectedImage
       ) {
         toast.error("Please fill all the required fields");
@@ -106,7 +106,7 @@ const CreateMovie = () => {
         setMovieData({
           name: "",
           year: "",
-          details: "",
+          detail: "",
           cast: [],
           rating: 0,
           image: null,
@@ -150,10 +150,10 @@ const CreateMovie = () => {
         </div>
         <div className="mb-4">
           <label className="block">
-            Details:
+            Detail:
             <textarea
-              name="details"
-              value={movieData.details}
+              name="detail"
+              value={movieData.detail}
               className="border px-2 py-1 w-full"
               onChange={handleChange}
             ></textarea>
