@@ -18,6 +18,7 @@ import {
   authenticated,
   authorizeAdmin,
 } from "../middlewares/authMiddleware.js";
+import checkId from "../middlewares/checkId.js";
 
 //Public routes
 router.get("/all-movies", getAllMovies);
@@ -27,7 +28,7 @@ router.get("/random-movies", getRandomMovies);
 router.get("/top-movies", getTopMovies);
 
 //Restricted Routes
-router.post("/:id/reviews", authenticated, movieReview);
+router.post("/:id/reviews", authenticated, checkId, movieReview);
 
 //Admin
 router.post("/create-movie", authenticated, authorizeAdmin, createMovie);

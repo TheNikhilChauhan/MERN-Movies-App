@@ -5,11 +5,11 @@ import multer from "multer";
 const router = express.Router();
 
 const storage = multer.diskStorage({
-  destination: (req, res, cb) => {
+  destination: (req, file, cb) => {
     cb(null, "uploads/");
   },
 
-  filename: (req, res, cb) => {
+  filename: (req, file, cb) => {
     const extname = path.extname(file.originalname);
     cb(null, `${file.filename}-${Date.now()}${extname}`);
   },
@@ -22,7 +22,7 @@ const fileFilter = (req, file, cb) => {
   const extname = path.extname(file.originalname);
   const mimetype = file.mimetype;
 
-  if (filetypes.test(extname) && mimetype.test(mimetype)) {
+  if (filetypes.test(extname) && mimetypes.test(mimetype)) {
     cb(null, true);
   } else {
     cb(new Error("Images only"), false);
