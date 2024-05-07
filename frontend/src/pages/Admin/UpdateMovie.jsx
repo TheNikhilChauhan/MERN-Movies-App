@@ -30,7 +30,7 @@ const UpdateMovie = () => {
     }
   }, [initialMovieData]);
 
-  const [UpdateMovie, { isLoading: isUpdatingMovie }] =
+  const [updateMovie, { isLoading: isUpdatingMovie }] =
     useUpdateMovieMutation();
 
   const [
@@ -51,6 +51,60 @@ const UpdateMovie = () => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setSelectedImage(file);
+  };
+
+  const handleUpdateMovie = async () => {
+    try {
+      if (
+        !movieData.name ||
+        !movieData.year ||
+        !movieData.detail ||
+        !movieData.cast
+      ) {
+        toast.error("Please fill in all the required fields.");
+        return;
+      }
+
+      let uploadImagePath = movieData.image;
+
+      if (selectedImage) {
+        const formData = new FormData();
+        formData.append("image", selectedImage);
+
+        const uploadImageResponse = await updateImage(formData);
+
+        if (uploadImageResponse.data) {
+          uploadImagePath = uploadImageResponse.data.image;
+        } else {
+          console.error("Failed to upload image: ", uploadImageErrorDetails);
+          toast.error("Failed to upload image");
+          return;
+        }
+      }
+
+      await updateMovie({
+        id: id,
+        updateMovie: {
+          ...movieData,
+          image: uploadImagePath,
+        },
+      });
+
+      navigate("/movies");
+    } catch (error) {
+      console.error("Failed to update movie: ", error);
+    }
+  };
+
+  const handleDeleteMovie = async () => {
+    try {
+      toast.success("Movie deleted successfully");
+      await deleteMovie(id);
+      navigate("/movies");
+    } catch (error) {
+      console.error("Failed to delete movie: ", error);
+      toast.error(`Failed to delete movie:  ${error?.message}`);
+    }
   };
 
   return (
@@ -128,7 +182,7 @@ const UpdateMovie = () => {
             <input
               type="file"
               accept="image/*"
-              onChange={handleChange}
+              onChange={handleImageChange}
               style={{ display: !selectedImage ? "none" : "block" }}
             />
           </label>
@@ -136,7 +190,7 @@ const UpdateMovie = () => {
 
         <button
           type="button"
-          onClick={handleChange}
+          onClick={handleUpdateMovie}
           className="bg-teal-500 hover:bg-teal-700 text-white px-4 py-2 rounded"
           disabled={isUpdatingMovie || isUpdatingImage}
         >
@@ -145,7 +199,7 @@ const UpdateMovie = () => {
 
         <button
           type="button"
-          onClick={handleChange}
+          onClick={handleDeleteMovie}
           className="bg-red-500 text-white px-4 py-2 rounded ml-2"
           disabled={isUpdatingMovie || isUpdatingImage}
         >
