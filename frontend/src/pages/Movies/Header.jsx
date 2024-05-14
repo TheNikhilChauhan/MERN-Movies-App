@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-import { useGetNewMoviesQuery } from "../../redux/api/movies";
+import { useGetNewMoviesQuery } from "../../redux/api/movie";
 import SliderUtil from "../../components/SliderUtil";
 
 const Header = () => {

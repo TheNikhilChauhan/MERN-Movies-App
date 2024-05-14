@@ -7,8 +7,8 @@ const App = () => {
   return (
     <>
       <ToastContainer />
+      <Navigation />
       <main className="p-3">
-        <Navigation />
         <Outlet />
       </main>
     </>

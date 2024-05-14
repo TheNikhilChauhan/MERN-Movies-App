@@ -1,6 +1,7 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import MovieCard from "../pages/Movies/MovieCard";
 
 const SliderUtil = ({ data }) => {
   const settings = {
@@ -10,7 +11,13 @@ const SliderUtil = ({ data }) => {
     slidesToShow: 4,
     slidesToScroll: 2,
   };
-  return <Slider {...settings}></Slider>;
+  return (
+    <Slider {...settings}>
+      {data?.map((movie) => (
+        <MovieCard key={movie._id} movie={movie} />
+      ))}
+    </Slider>
+  );
 };
 
 export default SliderUtil;
